@@ -14,9 +14,9 @@ To use the scripts in this repository, you will need:
 
 To get started with using the scripts in this repository, follow these steps:
 
-1. Clone this repository to your local machine:
+1. Clone this repository to your local machine.
 2. Activate the virtual envrionment: `source .venv/bin/activate`
-3. Run the scripts using the following command:
+3. Run the scripts following the __Usage__.
 
 ## Usage
 
