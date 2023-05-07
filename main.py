@@ -2,6 +2,7 @@
 
 import argparse
 import utils.plot_topic as plot
+import utils.bag_info as bag
 
 parser = argparse.ArgumentParser(description='Plot rostime difference, timestamps, or topic values for one or several topics in a ROS bag file.')
 parser.add_argument('bag_file', nargs='?', default='example.bag', help='path to the ROS bag file (default: "example.bag")')
@@ -9,7 +10,7 @@ parser.add_argument('topic_names', nargs='*', default=['/topic1'], help='list of
 
 parser.add_argument('--plot-timestamps', '-t', action='store_true', help='plot ros timestamps')
 parser.add_argument('--plot-timediff', '-td', action='store_true', help='plot rostime difference')
-parser.add_argument('--plot-header-timediff', '-e', action='store_true', help='plot header timestamps difference')
+parser.add_argument('--plot-header-timediff', '-htd', action='store_true', help='plot header timestamps difference')
 
 parser.add_argument('--plot-odometry', '-o', action='store_true', help='plot odometry topic values')
 parser.add_argument('--plot-std-values', '-s', action='store_true', help='plot topic standard values')
@@ -29,7 +30,7 @@ def main():
     elif args.plot_timestamps:
         plot_function = plot.plot_topic_timestamps
 
-    plot.show_bag_info(args.bag_file)
+    bag.show_bag_info(args.bag_file)
     for topic_name in args.topic_names:
         plot_function(topic_name, args.bag_file)
 

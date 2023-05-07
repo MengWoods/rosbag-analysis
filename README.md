@@ -14,7 +14,7 @@ To use the scripts in this repository, you will need:
 
 To get started with using the scripts in this repository, follow these steps:
 
-1. Clone this repository to your local machine.
+1. Clone this repository to your local machine and enter the repository directory: `cd rosbag-analysis`.
 2. Activate the virtual envrionment in the repo directory: `source .venv/bin/activate`
 
 ## Usage
@@ -25,7 +25,7 @@ This script can be used to plot different aspects of a ROS bag file. The followi
 - topic_names: A list of topic names to plot (default: ["/topic1"]).
 - --plot-timestamps (-t): Plot topic timestamps.
 - --plot-timediff (-td): Plot rostime difference.
-- --plot-header-timediff (-e): Plot difference between header timestamps.
+- --plot-header-timediff (-htd): Plot difference between header timestamps.
 - --plot-odometry (-o): Plot odometry topic values.
 - --plot-std-values (-s): Plot topic standard values.
 

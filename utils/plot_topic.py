@@ -93,7 +93,6 @@ def plot_odometry(topic_name, bag_file):
     plt.ylabel('Position (m)')
     plt.title(f'Position for topic: {topic_name}')
     plt.legend()
-    # plt.show()
 
     # plot orientation
     plt.figure(figsize=(12, 4))
@@ -105,7 +104,6 @@ def plot_odometry(topic_name, bag_file):
     plt.ylabel('Orientation')
     plt.title(f'Orientation for topic: {topic_name}')
     plt.legend()
-    # plt.show()
 
     # plot linear twist
     plt.figure(figsize=(12, 4))
@@ -116,7 +114,6 @@ def plot_odometry(topic_name, bag_file):
     plt.ylabel('Linear Twist (m/s)')
     plt.title(f'Linear Twist for topic: {topic_name}')
     plt.legend()
-    # plt.show()
 
     # plot angular twist
     plt.figure(figsize=(12, 4))
@@ -162,16 +159,3 @@ def plot_topic_timestamps(topic_name, bag_file):
     plt.xlabel('Message Number')
     plt.title(f'ROS Timestamp for topic: {topic_name}')
     plt.show()
-
-def show_bag_info(bag_file):
-    """
-    Displays basic information about a ROS bag file
-    """
-    bag = rosbag.Bag(bag_file)
-    print("[INFO] BAG INFO:")
-    print(f'\tBag file: {bag_file}')
-    print(f'\tTime range: {bag.get_start_time()} - {bag.get_end_time()}')
-    print(f'\tDuration: {bag.get_end_time() - bag.get_start_time()}')
-    print("\tTopics:")
-    for topic, info in bag.get_type_and_topic_info().topics.items():
-        print(f"\t\t{topic} \t\t({info.msg_type})")
