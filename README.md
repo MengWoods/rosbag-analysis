@@ -21,18 +21,21 @@ To get started with using the scripts in this repository, follow these steps:
 
 This script can be used to plot different aspects of a ROS bag file. The following command line arguments are available:
 
-- bag_file: The path to the ROS bag file to analyze (default: "example.bag").
-- topic_names: A list of topic names to plot (default: ["/topic1"]).
-- --plot-timestamps (-t): Plot topic timestamps.
-- --plot-timediff (-td): Plot rostime difference.
-- --plot-header-timediff (-htd): Plot difference between header timestamps.
-- --plot-odometry (-o): Plot odometry topic values.
-- --plot-std-values (-s): Plot topic standard values.
+- `bag_file`: The path to the ROS bag file to analyze (default: "example.bag").
+- `topic_names`: A list of topic names to plot (default: ["/topic1"]).
+- `--plot-timestamps` (`-t`): Plot topic timestamps.
+- `--plot-timediff` (`-td`): Plot rostime difference.
+- `--plot-header-timediff` (`-htd`): Plot difference between header timestamps.
+- `--plot-odometry` (`-o`): Plot odometry topic values.
+- `--plot-std-values` (`-s`): Plot topic standard values.
 
 Below are some examples:
 
 To plot the rostime difference for the topic `/topic2` in the bag file `mybag.bag`, run the following command:
 ```
+# Timediff of headers (common used)
+python main.py mybag.bag /topic2 -htd
+# Timediff of ROS messages
 python main.py mybag.bag /topic2 -td
 ```
 
@@ -44,7 +47,7 @@ python main.py mybag.bag /topic1 /topic2 -s
 
 To plot the timestamps for the topic `/topic1` in the bag file `mybag.bag`, run the following command:
 ```
-python main.py mybag.bag /topic1 --plot-timestamps
+python main.py mybag.bag /topic1 -t
 ```
 
 

@@ -13,11 +13,11 @@ def plot_ros_timediff(topic_name, bag_file):
     for topic, msg, t in bag.read_messages(topics=[topic_name]):
         timestamps.append(t.to_nsec())
 
-    differences = [timestamps[i+1] - timestamps[i] for i in range(len(timestamps)-1)]
+    differences = [(timestamps[i+1] - timestamps[i]) / 1e6 for i in range(len(timestamps)-1)]
 
     plt.plot(differences)
-    plt.ylabel('Time Difference (nanoseconds)')
-    plt.xlabel('Message Number')
+    plt.ylabel('Time Difference (milliseconds)')
+    plt.xlabel('Message Index')
     plt.title(f'ROSTime Difference for topic: {topic_name}')
     plt.show()
 
@@ -36,23 +36,23 @@ def plot_header_timediff(topic_name, bag_file):
             print(f"Topic {topic_name} does not contain a header with a timestamp.")
             return
         
-        # Convert the header timestamp to nanoseconds and append to the list of timestamps
-        timestamp_nsecs = header_timestamp.secs * 1e9 + header_timestamp.nsecs
-        timestamps.append(timestamp_nsecs)
+        # Convert the header timestamp to milliseconds and append to the list of timestamps
+        timestamp_msecs = (header_timestamp.secs * 1e3) + (header_timestamp.nsecs / 1e6)
+        timestamps.append(timestamp_msecs)
 
-    differences = [timestamps[i+1] - timestamps[i] for i in range(len(timestamps)-1)]
+    differences = [(timestamps[i+1] - timestamps[i]) for i in range(len(timestamps)-1)]
 
     plt.plot(differences)
-    plt.ylabel('Time Difference (nanoseconds)')
-    plt.xlabel('Message Number')
+    plt.ylabel('Time Difference (milliseconds)')
+    plt.xlabel('Message Index')
     plt.title(f'Header Timestamp Difference for topic: {topic_name}')
     plt.show()
+
 
 def plot_odometry(topic_name, bag_file):
     """
     Plots the values of a nav_msgs/Odometry topic in a ROS bag file
     """
-    print("[INFO] Plotting %s odometry..." % topic_name)
     bag = rosbag.Bag(bag_file)
     pos_x = []
     pos_y = []
